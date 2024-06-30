@@ -83,7 +83,7 @@ if __name__ == "__main__":
     # Create argument configuration
     config = {
         "env_name": args.task,
-        "robots": "PandaMobile",
+        "robots": "CobotMagic",
         "controller_configs": load_controller_config(default_controller="OSC_POSE"),
         "translucent_robot": False,
     }

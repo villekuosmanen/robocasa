@@ -77,7 +77,7 @@ def collect_human_trajectory(
     active_robot = env.robots[0] if env_configuration == "bimanual" else env.robots[arm == "left"]
 
     if active_robot.is_mobile:
-        zero_action = np.array([0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1])
+        zero_action = np.array([0, 0, 0, 0, 0, 0, -1,    0, 0, 0, 0, 0, 0, -1,   0, 0, 0,    -1])
     else:
         zero_action = np.array([0, 0, 0, 0, 0, 0, -1])
     for _ in range(1):
@@ -132,11 +132,17 @@ def collect_human_trajectory(
             # flip some actions
             base_action[0], base_action[1] = base_action[1], -base_action[0]
 
+            # action = np.concatenate((
+            #     arm_actions,
+            #     np.repeat(input_action[6:7], env.robots[0].gripper[arm].dof),
+            #     base_action,
+            #     torso_action,
+            # ))
             action = np.concatenate((
                 arm_actions,
                 np.repeat(input_action[6:7], env.robots[0].gripper[arm].dof),
+                np.zeros(7),
                 base_action,
-                torso_action,
             ))
             mode_action = input_action[-1]
 
