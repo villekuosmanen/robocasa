@@ -140,8 +140,9 @@ def collect_human_trajectory(
             # ))
             action = np.concatenate((
                 arm_actions,
+                np.zeros(6),
                 np.repeat(input_action[6:7], env.robots[0].gripper[arm].dof),
-                np.zeros(7),
+                np.zeros(1),
                 base_action,
             ))
             mode_action = input_action[-1]
