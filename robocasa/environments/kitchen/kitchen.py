@@ -406,7 +406,7 @@ class Kitchen(ManipulationEnv):
         cntr_y = base_fixture.get_ext_sites(relative=True)[0][1]
         base_to_edge = [
             base_to_ref[0],
-            cntr_y - 0.20,
+            cntr_y - 0.60,
             0,
         ]
         if offset is not None:
@@ -582,7 +582,7 @@ class Kitchen(ManipulationEnv):
                 self.sim.data.set_joint_qpos(obj.joints[0], np.concatenate([np.array(obj_pos), np.array(obj_quat)]))
                     
         # step through a few timesteps to settle objects
-        action = np.zeros(12) # apply empty action
+        action = np.zeros(18) # apply empty action
 
         # Since the env.step frequency is slower than the mjsim timestep frequency, the internal controller will output
         # multiple torque commands in between new high level action commands. Therefore, we need to denote via
